@@ -1,0 +1,18 @@
+export const OPERATORS = {
+  PLUS: ' + ',
+  MINUS: ' - ',
+  MULTIPLY: ' * ',
+  DIVIDE: ' / ',
+  EXPONENT: ' ** ',
+  IS: ' = ',
+  EQUALS: ' === ',
+  NOT_EQUALS: ' !== ',
+  GREATER_THAN: ' > ',
+  GREATER_THAN_EQUALS: ' >= ',
+  LESS_THAN: ' < ',
+  LESS_THAN_EQUALS: ' <= ',
+  NOOP: '',
+  DOT: '.',
+  BRACKET_OPEN: '(',
+  BRACKET_CLOSE: ')',
+};
