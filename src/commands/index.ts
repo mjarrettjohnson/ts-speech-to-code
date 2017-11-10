@@ -1,3 +1,29 @@
+import { MovementCommands } from './movement';
+import { DeleteCommands } from './delete';
+import { SelectCommands } from './select';
+import { Editor } from '../editor';
+
+const wordsToNum = require('words-to-num');
+
+export class BaseCommands implements ICommand {
+  private editor: Editor;
+  private commands: Array<ICommand>;
+  constructor(editor: Editor) {
+    this.editor = editor;
+    this.commands = [
+      new MovementCommands(editor),
+      new DeleteCommands(editor),
+      new SelectCommands(editor),
+    ];
+  }
+
+  get(): Array<{}> {
+    const all: Array<Array<{}>> = this.commands.map(command => command.get());
+
+    return [].concat.apply([], all);
+  }
+}
+
 export interface ICommand {
   get(): Array<{}>;
 }
@@ -37,14 +63,18 @@ export class Command {
         case 'one':
           num = 1;
           break;
+        case 'two':
         case 'to':
           num = 2;
+          break;
+        case 'three':
+          num = 3;
           break;
         case 'for':
           num = 4;
           break;
         default:
-          num = 0;
+          return wordsToNum.convert(word);
       }
     }
     return num;
@@ -66,4 +96,9 @@ export const CM_COMMANDS = {
   MOVE_WORD_BACKWARD: 'goWordLeft',
   MOVE_TO_END_OF_LINE: 'goLineEnd',
   MOVE_TO_START_OF_LINE: 'goLineStart',
+  DELETE_LINE: 'deleteLine',
+  DELETE_WORD_RIGHT: 'delWordAfter',
+  DELETE_WORD_LEFT: 'delWordBefore',
+  DELETE_LINE_LEFT: 'delWrappedLineLeft',
+  DELETE_LINE_RIGHT: 'delWrappedLineRight',
 };

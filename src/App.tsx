@@ -3,7 +3,7 @@ import * as CodeMirror from 'codemirror';
 
 import { Editor } from './editor';
 import { Mode } from './modes/mode';
-import { MovementCommand } from './commands/movement';
+import { BaseCommands } from './commands';
 
 import './App.css';
 import '../node_modules/codemirror/mode/javascript/javascript';
@@ -40,9 +40,9 @@ class App extends React.Component {
         lineWrapping: true,
       })
     );
-    const movement = new MovementCommand(this.editor);
-    const commands = movement.get();
-
+    const baseCommands = new BaseCommands(this.editor);
+    const commands = baseCommands.get();
+    console.log(commands);
     this.mode.addCommands(commands);
     this.mode.addCallback('result', this.setWordsSpoken.bind(this));
   }

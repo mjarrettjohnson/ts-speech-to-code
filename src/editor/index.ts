@@ -33,4 +33,23 @@ export class Editor {
   setCursor(position: CodeMirror.Position) {
     this.doc.setCursor(position);
   }
+
+  selectRange(startPos: CodeMirror.Position, endPos: CodeMirror.Position) {
+    this.doc.setSelection(startPos, endPos);
+    console.log(this.doc.getSelection());
+  }
+
+  replaceRange(
+    text: string,
+    startPos: CodeMirror.Position,
+    endPos: CodeMirror.Position
+  ): void {
+    this.doc.replaceRange(text, startPos, endPos);
+  }
+
+  deleteSelection(): void {
+    if (this.doc.somethingSelected()) {
+      this.doc.replaceSelection('');
+    }
+  }
 }

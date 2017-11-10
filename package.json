@@ -15,7 +15,8 @@
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-scripts-ts": "2.8.0",
-    "ts-node": "^3.3.0"
+    "ts-node": "^3.3.0",
+    "words-to-num": "0.0.2"
   },
   "scripts": {
     "start": "react-scripts-ts start",

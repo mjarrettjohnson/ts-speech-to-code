@@ -2,15 +2,17 @@ import { Command, ICommand, CM_COMMANDS } from './index';
 import * as CodeMirror from 'codemirror';
 import { Editor } from '../editor';
 
-export class MovementCommand implements ICommand {
+export class MovementCommands implements ICommand {
   MOVE = {
     UP: 'go up :num',
     DOWN: 'go down :num',
     TO_LINE: 'go to line :num',
-    WORD_RIGHT: 'move :num word(s) right',
-    WORD_LEFT: 'move :num word(s) left',
-    END_OF_LINE: 'end of the line',
-    START_OF_LINE: 'start of the line',
+    WORD_RIGHT: 'go word right',
+    WORD_LEFT: 'go word left',
+    N_WORDS_RIGHT: 'go :num words right',
+    N_WORDS_LEFT: 'go :num words left',
+    END_OF_LINE: 'go to the end',
+    START_OF_LINE: 'go to the star',
   };
 
   private editor: Editor;
@@ -19,14 +21,16 @@ export class MovementCommand implements ICommand {
     this.editor = editor;
   }
 
-  get() {
-    const commands = [
+  get(): Array<{}> {
+    const commands: Array<Command> = [
       new Command(this.MOVE.DOWN, this.moveDown.bind(this)),
       new Command(this.MOVE.UP, this.moveUp.bind(this)),
       new Command(this.MOVE.START_OF_LINE, this.goToStartOfLine.bind(this)),
       new Command(this.MOVE.END_OF_LINE, this.goToEndOfLine.bind(this)),
-      new Command(this.MOVE.WORD_RIGHT, this.moveWordsRight.bind(this)),
-      new Command(this.MOVE.WORD_LEFT, this.moveWordsLeft.bind(this)),
+      new Command(this.MOVE.WORD_LEFT, this.moveWordLeft.bind(this)),
+      new Command(this.MOVE.WORD_RIGHT, this.moveWordRight.bind(this)),
+      new Command(this.MOVE.N_WORDS_RIGHT, this.moveWordsRight.bind(this)),
+      new Command(this.MOVE.N_WORDS_LEFT, this.moveWordsLeft.bind(this)),
       new Command(this.MOVE.TO_LINE, this.goToLine.bind(this)),
     ];
 
@@ -68,6 +72,14 @@ export class MovementCommand implements ICommand {
     for (let i = 0; i < count; i++) {
       this.editor.execute(CM_COMMANDS.MOVE_UP);
     }
+  }
+
+  moveWordLeft(): void {
+    this.editor.execute(CM_COMMANDS.MOVE_WORD_FORWARD);
+  }
+
+  moveWordRight(): void {
+    this.editor.execute(CM_COMMANDS.MOVE_WORD_FORWARD);
   }
 
   moveWordsRight(num: string): void {
