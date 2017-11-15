@@ -9,6 +9,10 @@ export class Value implements Writeable {
 
   write(): string {
     if (this.isString) {
+      const value = this.val as string;
+      if (value.indexOf(`'`) !== -1 || value.indexOf(`"`) !== -1) {
+        return `\`${this.val}\``;
+      }
       return `'${this.val}'`;
     } else {
       return this.val.toString();

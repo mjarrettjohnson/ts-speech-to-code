@@ -1,6 +1,6 @@
 import { Command, ICommand, CM_COMMANDS } from './index';
 import * as CodeMirror from 'codemirror';
-import { Editor } from '../editor';
+import { Editor } from '../../editor';
 
 export class SelectCommands implements ICommand {
   SELECT = {
@@ -11,7 +11,7 @@ export class SelectCommands implements ICommand {
     NUM_WORDS_LEFT: 'select :num words right',
     TO_LINE_END: 'select to end of the line',
     TO_LINE_START: 'select to start of the line',
-    RANGE: '',
+    RANGE: 'select from :start to :end',
   };
 
   private editor: Editor;
@@ -29,6 +29,7 @@ export class SelectCommands implements ICommand {
       new Command(this.SELECT.NUM_WORDS_LEFT, this.selectWordsLeft.bind(this)),
       new Command(this.SELECT.TO_LINE_END, this.selectToLineEnd.bind(this)),
       new Command(this.SELECT.TO_LINE_START, this.selectToLineStart.bind(this)),
+      new Command(this.SELECT.RANGE, this.selectRange.bind(this)),
     ];
     return commands.map(command => command.get());
   }
@@ -94,5 +95,14 @@ export class SelectCommands implements ICommand {
     this.editor.execute(CM_COMMANDS.MOVE_TO_END_OF_LINE);
     const endPos: CodeMirror.Position = this.editor.getCursor();
     this.editor.selectRange(currentPos, endPos);
+  }
+
+  selectRange(start: string, end: string): void {
+    const startPos = new CodeMirror.Pos(
+      Command.parseWordToNumber(start) - 1,
+      0
+    );
+    const endPos = new CodeMirror.Pos(Command.parseWordToNumber(end) - 1);
+    this.editor.selectRange(startPos, endPos);
   }
 }

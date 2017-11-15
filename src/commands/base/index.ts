@@ -1,31 +1,35 @@
 import { MovementCommands } from './movement';
 import { DeleteCommands } from './delete';
 import { SelectCommands } from './select';
-import { Editor } from '../editor';
+import { ValueCommands } from '../value';
+import { Editor } from '../../editor';
 
 const wordsToNum = require('words-to-num');
 
 export class BaseCommands implements ICommand {
-  private editor: Editor;
   private commands: Array<ICommand>;
   constructor(editor: Editor) {
-    this.editor = editor;
     this.commands = [
       new MovementCommands(editor),
       new DeleteCommands(editor),
       new SelectCommands(editor),
+      new ValueCommands(editor),
     ];
   }
 
   get(): Array<{}> {
-    const all: Array<Array<{}>> = this.commands.map(command => command.get());
+    const all = this.commands.map(command => command.get());
 
     return [].concat.apply([], all);
   }
 }
 
+export interface IWriterCommand {
+  write(text: string): void;
+}
+
 export interface ICommand {
-  get(): Array<{}>;
+  get(): Array<{ [key: string]: Function }>;
 }
 
 export class Command {

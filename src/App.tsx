@@ -3,7 +3,7 @@ import * as CodeMirror from 'codemirror';
 
 import { Editor } from './editor';
 import { Mode } from './modes/mode';
-import { BaseCommands } from './commands';
+import { BaseCommands } from './commands/base';
 
 import './App.css';
 import '../node_modules/codemirror/mode/javascript/javascript';

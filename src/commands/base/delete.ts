@@ -1,6 +1,6 @@
 import { Command, ICommand, CM_COMMANDS } from './index';
 import * as CodeMirror from 'codemirror';
-import { Editor } from '../editor';
+import { Editor } from '../../editor';
 
 export class DeleteCommands implements ICommand {
   DELETE = {
@@ -12,6 +12,7 @@ export class DeleteCommands implements ICommand {
     RANGE: 'delete from :start to :end',
     SELECTION: 'delete selection',
   };
+
   private editor: Editor;
 
   constructor(editor: Editor) {

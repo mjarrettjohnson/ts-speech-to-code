@@ -1,18 +1,20 @@
 import { Command, ICommand, CM_COMMANDS } from './index';
 import * as CodeMirror from 'codemirror';
-import { Editor } from '../editor';
+import { Editor } from '../../editor';
 
 export class MovementCommands implements ICommand {
   MOVE = {
-    UP: 'go up :num',
-    DOWN: 'go down :num',
-    TO_LINE: 'go to line :num',
-    WORD_RIGHT: 'go word right',
-    WORD_LEFT: 'go word left',
-    N_WORDS_RIGHT: 'go :num words right',
-    N_WORDS_LEFT: 'go :num words left',
-    END_OF_LINE: 'go to the end',
-    START_OF_LINE: 'go to the star',
+    UP: 'move one line up',
+    N_UP: 'move :num lines up',
+    DOWN: 'move 1 line down',
+    N_DOWN: 'move :num lines down',
+    TO_LINE: 'move to line :num',
+    WORD_RIGHT: 'move one word right',
+    WORD_LEFT: 'move one word left',
+    N_WORDS_RIGHT: 'move :num words right',
+    N_WORDS_LEFT: 'move :num words left',
+    END_OF_LINE: 'move to the end',
+    START_OF_LINE: 'move to the beginning',
   };
 
   private editor: Editor;
@@ -23,8 +25,10 @@ export class MovementCommands implements ICommand {
 
   get(): Array<{}> {
     const commands: Array<Command> = [
-      new Command(this.MOVE.DOWN, this.moveDown.bind(this)),
-      new Command(this.MOVE.UP, this.moveUp.bind(this)),
+      new Command(this.MOVE.DOWN, () => this.moveDown('1')),
+      new Command(this.MOVE.N_DOWN, this.moveDown.bind(this)),
+      new Command(this.MOVE.UP, () => this.moveUp('1')),
+      new Command(this.MOVE.N_UP, this.moveUp.bind(this)),
       new Command(this.MOVE.START_OF_LINE, this.goToStartOfLine.bind(this)),
       new Command(this.MOVE.END_OF_LINE, this.goToEndOfLine.bind(this)),
       new Command(this.MOVE.WORD_LEFT, this.moveWordLeft.bind(this)),
@@ -75,7 +79,7 @@ export class MovementCommands implements ICommand {
   }
 
   moveWordLeft(): void {
-    this.editor.execute(CM_COMMANDS.MOVE_WORD_FORWARD);
+    this.editor.execute(CM_COMMANDS.MOVE_WORD_BACKWARD);
   }
 
   moveWordRight(): void {

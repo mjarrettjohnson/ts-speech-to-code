@@ -1,4 +1,5 @@
 import * as CodeMirror from 'codemirror';
+import { Writer } from '../models';
 
 export class Editor {
   private editor: CodeMirror.Editor;
@@ -23,7 +24,14 @@ export class Editor {
   }
 
   set(text: string): void {
-    this.doc.replaceRange(text, this.getCursor());
+    if (this.doc.somethingSelected()) {
+      this.doc.replaceSelection(text);
+    } else {
+      this.doc.replaceRange(text, this.getCursor());
+    }
+
+    const doc = this.doc.getValue();
+    this.doc.setValue(Writer.print(doc));
   }
 
   getCursor(): CodeMirror.Position {
