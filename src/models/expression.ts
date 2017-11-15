@@ -1,10 +1,10 @@
-import { Writeable } from './index';
+import { IWriteable } from './index';
 
-export class Expression implements Writeable {
-  private values: Array<Writeable>;
+export class Expression implements IWriteable {
+  private values: Array<IWriteable>;
   private operators: Array<string>;
 
-  constructor(values: Array<Writeable> = [], operators: Array<string> = []) {
+  constructor(values: Array<IWriteable> = [], operators: Array<string> = []) {
     this.values = values;
     this.operators = operators;
   }

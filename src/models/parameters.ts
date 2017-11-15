@@ -1,7 +1,7 @@
-import { Writeable } from './index';
+import { IWriteable } from './index';
 import { Parameter } from './parameter';
 
-export class Parameters implements Writeable {
+export class Parameters implements IWriteable {
   static types = {
     DESTRUCTURED: 'destructured',
     REGULAR: 'regular',

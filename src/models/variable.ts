@@ -1,6 +1,6 @@
-import { Writeable } from './index';
+import { IWriteable } from './index';
 
-export class Variable implements Writeable {
+export class Variable implements IWriteable {
   static types = {
     CONSTANT: 'constant',
     LET: 'let',
@@ -10,11 +10,11 @@ export class Variable implements Writeable {
 
   private name: string;
   private type: string;
-  private value: Writeable;
+  private value: IWriteable;
 
   constructor(
     name: string,
-    value: Writeable,
+    value: IWriteable,
     type: string = Variable.types.CONSTANT
   ) {
     this.type = type;

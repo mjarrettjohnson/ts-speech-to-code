@@ -1,11 +1,11 @@
-import { Writeable } from './index';
+import { IWriteable } from './index';
 import { Value } from './value';
 
-export class Parameter implements Writeable {
+export class Parameter implements IWriteable {
   private name: Value;
-  private defaultValue: Writeable | void;
+  private defaultValue: IWriteable | void;
 
-  constructor(name: Value, defaultValue?: Writeable | void) {
+  constructor(name: Value, defaultValue?: IWriteable | void) {
     this.name = name;
     this.defaultValue = defaultValue;
   }

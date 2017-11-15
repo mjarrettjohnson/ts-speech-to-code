@@ -1,6 +1,6 @@
-import { Writeable } from './index';
+import { IWriteable } from './index';
 
-export class NegatedValue implements Writeable {
+export class NegatedValue implements IWriteable {
   private val: string;
   constructor(val: string) {
     this.val = val;

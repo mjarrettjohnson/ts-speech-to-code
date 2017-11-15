@@ -1,4 +1,4 @@
-export interface Writeable {
+export interface IWriteable {
   write(): string;
 }
 

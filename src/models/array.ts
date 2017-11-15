@@ -1,11 +1,11 @@
-import { Writeable } from './index';
-export class Arr implements Writeable {
-  private values: Array<Writeable>;
-  constructor(values: Array<Writeable>) {
+import { IWriteable } from './index';
+export class Arr implements IWriteable {
+  private values: Array<IWriteable>;
+  constructor(values: Array<IWriteable>) {
     this.values = values;
   }
 
-  writeValue(value: Writeable): string {
+  writeValue(value: IWriteable): string {
     return `${value.write()}`;
   }
 

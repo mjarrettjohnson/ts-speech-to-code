@@ -1,5 +1,5 @@
-import { Writeable } from './index';
-export class Value implements Writeable {
+import { IWriteable } from './index';
+export class Value implements IWriteable {
   private isString: boolean;
   private val: string | boolean | number;
   constructor(val: string | boolean | number, isString: boolean = false) {

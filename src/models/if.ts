@@ -1,14 +1,14 @@
-import { Writeable } from './index';
+import { IWriteable } from './index';
 import { Block } from './block';
 
-export class If implements Writeable {
-  private expressions: Array<Writeable>;
+export class If implements IWriteable {
+  private expressions: Array<IWriteable>;
   private conditionals: Array<string>;
   private block: Block;
   private isIfElse: boolean;
 
   constructor(
-    expressions: Array<Writeable>,
+    expressions: Array<IWriteable>,
     conditionals: Array<string>,
     block: Block,
     isIfElse: boolean = false

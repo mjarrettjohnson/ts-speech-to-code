@@ -1,17 +1,17 @@
-import { Writeable } from './index';
+import { IWriteable } from './index';
 
-export class Obj implements Writeable {
-  private properties: Array<{ prop: string; value: Writeable }>;
+export class Obj implements IWriteable {
+  private properties: Array<{ prop: string; value: IWriteable }>;
 
-  constructor(properties: Array<{ prop: string; value: Writeable }>) {
+  constructor(properties: Array<{ prop: string; value: IWriteable }>) {
     this.properties = properties;
   }
 
-  addProperty({ prop, value }: { prop: string; value: Writeable }): void {
+  addProperty({ prop, value }: { prop: string; value: IWriteable }): void {
     this.properties.push({ prop, value });
   }
 
-  writeProp({ prop, value }: { prop: string; value: Writeable }): string {
+  writeProp({ prop, value }: { prop: string; value: IWriteable }): string {
     return `${prop}: ${value.write()}`;
   }
 
