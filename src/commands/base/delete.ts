@@ -1,4 +1,5 @@
-import { Command, ICommand, CM_COMMANDS } from './index';
+import { CM_COMMANDS } from './index';
+import { Command, ICommand } from '../command';
 import * as CodeMirror from 'codemirror';
 import { Editor } from '../../editor';
 

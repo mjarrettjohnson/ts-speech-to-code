@@ -1,6 +1,6 @@
-import { Command, ICommand, IWriterCommand } from './base/index';
-import { Editor } from '../editor';
-import { Value } from '../models';
+import { Command, ICommand, IWriterCommand } from '../command';
+import { Editor } from '../../editor';
+import { Value } from '../../models';
 
 const WordsToNumber = require('words-to-num');
 

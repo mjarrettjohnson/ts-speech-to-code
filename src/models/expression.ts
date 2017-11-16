@@ -9,6 +9,14 @@ export class Expression implements IWriteable {
     this.operators = operators;
   }
 
+  addValue(value: IWriteable) {
+    this.values.push(value);
+  }
+
+  addOperator(op: string) {
+    this.operators.push(op);
+  }
+
   write(): string {
     let result = '';
     this.values.forEach((value, i) => {

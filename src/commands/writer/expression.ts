@@ -1,13 +1,16 @@
-import { Command, ICommand, IWriterCommand } from './base/index';
-import { Editor } from '../editor';
+import { Command, ICommand, IWriterCommand } from '../command';
+import { Editor } from '../../editor';
+import { Expression } from '../../models/expression';
 
 export class ExpressionCommands implements ICommand, IWriterCommand {
   EXPRESSION = 'expression';
 
   private editor: Editor;
+  private expression: Expression;
 
   constructor(editor: Editor) {
     this.editor = editor;
+    this.expression = new Expression([], []);
   }
 
   get(): Array<{}> {
