@@ -23,7 +23,7 @@ describe('Function', () => {
           'isValid',
           new Expression(
             [new Value('arr'), new Value('length'), new Value(0)],
-            [OPERATORS.DOT, OPERATORS.EQUALS]
+            [OPERATORS.STOP, OPERATORS.EQUALS]
           )
         ),
         new If(
@@ -57,7 +57,7 @@ describe('Function', () => {
             'isValid',
             new Expression(
               [new Value('arr'), new Value('length'), new Value(0)],
-              [OPERATORS.DOT, OPERATORS.EQUALS]
+              [OPERATORS.STOP, OPERATORS.EQUALS]
             )
           ),
           new If(
@@ -85,7 +85,7 @@ describe('Function', () => {
             'isValid',
             new Expression(
               [new Value('arr'), new Value('length'), new Value(0)],
-              [OPERATORS.DOT, OPERATORS.EQUALS]
+              [OPERATORS.STOP, OPERATORS.EQUALS]
             )
           ),
           new If(
@@ -112,7 +112,7 @@ describe('Function', () => {
             'isValid',
             new Expression(
               [new Value('arr'), new Value('length'), new Value(0)],
-              [OPERATORS.DOT, OPERATORS.EQUALS]
+              [OPERATORS.STOP, OPERATORS.EQUALS]
             )
           ),
           new If(
@@ -141,7 +141,7 @@ describe('Function', () => {
             'isValid',
             new Expression(
               [new Value('arr'), new Value('length'), new Value(0)],
-              [OPERATORS.DOT, OPERATORS.EQUALS]
+              [OPERATORS.STOP, OPERATORS.EQUALS]
             )
           ),
           new If(
@@ -170,7 +170,7 @@ describe('Function', () => {
             'isValid',
             new Expression(
               [new Value('arr'), new Value('length'), new Value(0)],
-              [OPERATORS.DOT, OPERATORS.EQUALS]
+              [OPERATORS.STOP, OPERATORS.EQUALS]
             )
           ),
           new If(
@@ -198,7 +198,7 @@ describe('Function', () => {
             'isValid',
             new Expression(
               [new Value('arr'), new Value('length'), new Value(0)],
-              [OPERATORS.DOT, OPERATORS.EQUALS]
+              [OPERATORS.STOP, OPERATORS.EQUALS]
             )
           ),
           new If(
@@ -227,7 +227,7 @@ describe('Function', () => {
             'isValid',
             new Expression(
               [new Value('arr'), new Value('length'), new Value(0)],
-              [OPERATORS.DOT, OPERATORS.EQUALS]
+              [OPERATORS.STOP, OPERATORS.EQUALS]
             )
           ),
           new Variable(
@@ -269,7 +269,7 @@ describe('Function', () => {
             'isValid',
             new Expression(
               [new Value('arr'), new Value('length'), new Value(0)],
-              [OPERATORS.DOT, OPERATORS.EQUALS]
+              [OPERATORS.STOP, OPERATORS.EQUALS]
             )
           ),
           new If(

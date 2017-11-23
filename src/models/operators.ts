@@ -12,7 +12,7 @@ export const OPERATORS = {
   LESS_THAN: ' < ',
   LESS_THAN_EQUALS: ' <= ',
   NOOP: '',
-  DOT: '.',
+  STOP: '.',
   BRACKET_OPEN: '(',
-  BRACKET_CLOSE: ')',
+  BRACKET_END: ')',
 };

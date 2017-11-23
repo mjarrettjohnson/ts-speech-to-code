@@ -19,6 +19,18 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.CodeMirror {
+  height: 80vh !important;
+}
+
+.CodeMirror-focused {
+  border: 2px solid rgb(97, 76, 219) !important;
 }

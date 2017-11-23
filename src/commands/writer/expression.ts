@@ -3,7 +3,9 @@ import { Editor } from '../../editor';
 import { Expression } from '../../models/expression';
 
 export class ExpressionCommands implements ICommand, IWriterCommand {
-  EXPRESSION = 'expression';
+  EXPRESSION = {
+    ADD_VALUE: 'add ',
+  };
 
   private editor: Editor;
   private expression: Expression;

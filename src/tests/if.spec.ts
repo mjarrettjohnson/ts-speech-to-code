@@ -30,7 +30,7 @@ describe('If', () => {
   it('writes a simple expression if statement', () => {
     const ex = new Expression(
       [new Value('arr'), new Value('length'), new Value(0)],
-      [OPERATORS.DOT, OPERATORS.EQUALS]
+      [OPERATORS.STOP, OPERATORS.EQUALS]
     );
     const ifStatement = new If([ex], [], new Block());
 
@@ -40,12 +40,12 @@ describe('If', () => {
   it('writes an || expression if statement', () => {
     const ex = new Expression(
       [new Value('arr'), new Value('length'), new Value(0)],
-      [OPERATORS.DOT, OPERATORS.EQUALS]
+      [OPERATORS.STOP, OPERATORS.EQUALS]
     );
 
     const ex2 = new Expression(
       [new Value('arr'), new Value('length'), new Value(10)],
-      [OPERATORS.DOT, OPERATORS.GREATER_THAN]
+      [OPERATORS.STOP, OPERATORS.GREATER_THAN]
     );
     const ifStatement = new If([ex, ex2], [CONDITIONALS.OR], new Block());
     expect(ifStatement.write()).to.eq(

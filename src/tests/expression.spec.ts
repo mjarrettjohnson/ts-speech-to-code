@@ -30,7 +30,7 @@ describe('Expression', () => {
   it('should handle dot method of variables', () => {
     const v1 = new Value('trunk');
     const v2 = new Value('dust');
-    const op = OPERATORS.DOT;
+    const op = OPERATORS.STOP;
     const expr = new Expression([v1, v2], [op]);
     expect(expr.write()).to.eq('trunk.dust');
   });

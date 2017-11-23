@@ -1,5 +1,5 @@
 import { Command, ICommand, IWriterCommand } from '../command';
-import { Editor } from '../../editor';
+import { Stage } from '../../editor/stage';
 import { Value } from '../../models';
 
 const WordsToNumber = require('words-to-num');
@@ -20,10 +20,10 @@ export class ValueCommands implements ICommand, IWriterCommand {
     NUMBER: 'number with value *name',
   };
 
-  private editor: Editor;
+  private stage: Stage;
 
-  constructor(editor: Editor) {
-    this.editor = editor;
+  constructor(stage: Stage) {
+    this.stage = stage;
   }
 
   get(): Array<{}> {
@@ -49,7 +49,7 @@ export class ValueCommands implements ICommand, IWriterCommand {
   }
 
   write(text: string): void {
-    this.editor.set(text);
+    this.stage.addText(text);
   }
 
   writeString(text: string, type: string): void {

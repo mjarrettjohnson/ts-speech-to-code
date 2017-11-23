@@ -14,7 +14,7 @@ describe('Object', () => {
   it('correctly writes a property with an expression value', () => {
     const expr = new Expression(
       [new Value('arr'), new Value('DoSomething')],
-      [OPERATORS.DOT]
+      [OPERATORS.STOP]
     );
 
     const props = [

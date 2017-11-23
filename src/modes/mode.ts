@@ -9,19 +9,27 @@ class Speech {
 
 export class Mode {
   private speech: Speech;
+  private commands: Array<{}>;
   constructor() {
     this.speech = annyang;
+    this.commands = [];
     this.start();
   }
 
   addCommands(commands: {} | Array<{}>): void {
     if (!Array.isArray(commands)) {
       this.speech.addCommands(commands);
+      this.commands.push(commands);
     } else {
+      this.commands = this.commands.concat(commands);
       commands.forEach((command: {}) => {
         this.speech.addCommands(command);
       });
     }
+  }
+
+  getCommands(): Array<{}> {
+    return this.commands;
   }
 
   start(): void {
@@ -30,6 +38,7 @@ export class Mode {
 
   remove(): void {
     this.speech.removeCommands();
+    this.commands = [];
   }
 
   addCallback(e: string, callback: Function): void {

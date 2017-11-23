@@ -1,7 +1,6 @@
 import { MovementCommands } from './movement';
 import { DeleteCommands } from './delete';
 import { SelectCommands } from './select';
-import { ValueCommands } from '../writer/value';
 import { ICommand } from '../command';
 import { Editor } from '../../editor';
 
@@ -12,7 +11,6 @@ export class BaseCommands implements ICommand {
       new MovementCommands(editor),
       new DeleteCommands(editor),
       new SelectCommands(editor),
-      new ValueCommands(editor),
     ];
   }
 

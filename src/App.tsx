@@ -3,7 +3,8 @@ import * as CodeMirror from 'codemirror';
 
 import { Editor } from './editor';
 import { Mode } from './modes/mode';
-import { BaseCommands } from './commands/base';
+import { Level } from './commands/level';
+import { Stage } from './editor/stage';
 
 import './App.css';
 import '../node_modules/codemirror/mode/javascript/javascript';
@@ -19,10 +20,12 @@ class App extends React.Component {
   };
   mode: Mode;
   editor: Editor;
+  stage: Stage;
 
   constructor() {
     super();
     this.state = { spoken: '', mode: 'javascript', theme: 'material' };
+    this.mode = new Mode();
   }
 
   setWordsSpoken(spoken: Array<string>) {
@@ -31,7 +34,9 @@ class App extends React.Component {
 
   componentDidMount() {
     const editor = document.getElementById('editor') as HTMLTextAreaElement;
-    this.mode = new Mode();
+    const stageTextArea = document.getElementById(
+      'stage'
+    ) as HTMLTextAreaElement;
     this.editor = new Editor(
       CodeMirror.fromTextArea(editor, {
         lineNumbers: true,
@@ -40,8 +45,19 @@ class App extends React.Component {
         lineWrapping: true,
       })
     );
-    const baseCommands = new BaseCommands(this.editor);
-    const commands = baseCommands.get();
+
+    const stage = new Editor(
+      CodeMirror.fromTextArea(stageTextArea, {
+        lineNumbers: true,
+        mode: this.state.mode,
+        theme: this.state.theme,
+        lineWrapping: true,
+      })
+    );
+
+    this.stage = new Stage(this.editor, stage);
+    const level = new Level(this.editor, this.mode, this.stage);
+    const commands = level.get();
     console.log(commands);
     this.mode.addCommands(commands);
     this.mode.addCallback('result', this.setWordsSpoken.bind(this));
@@ -50,17 +66,24 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <div className="container">
+        <div style={{ marginLeft: '240px', marginRight: '240px' }}>
           <div className="row">
-            <div className="col-md-10 col-md-offset-1 text-left">
-              <textarea id="editor" />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-md-10 col-md-1">
+            <div className="col-md-12">
               <h3>{this.state.spoken}</h3>
             </div>
           </div>
+          <hr />
+          <div className="row">
+            <div className="col-md-8 text-left">
+              <h2>Main</h2>
+              <textarea id="editor" />
+            </div>
+            <div className="col-md-4 text-left">
+              <h2>Stage</h2>
+              <textarea id="stage" style={{ height: '100px' }} />
+            </div>
+          </div>
+          <hr />
         </div>
       </div>
     );

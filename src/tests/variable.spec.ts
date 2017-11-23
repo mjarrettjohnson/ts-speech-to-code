@@ -29,7 +29,7 @@ describe('Variable', () => {
   it('writes a constant with an expression value', () => {
     const ex = new Expression(
       [new Value('arr'), new Value('length'), new Value(0)],
-      [OPERATORS.DOT, OPERATORS.EQUALS]
+      [OPERATORS.STOP, OPERATORS.EQUALS]
     );
     const v = new Variable('isEmpty', ex);
     expect(v.write()).to.eq('const isEmpty = arr.length === 0');
